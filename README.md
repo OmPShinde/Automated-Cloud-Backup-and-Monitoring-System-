@@ -117,26 +117,6 @@ Example log output:
 
 Creating a new file in `ProjectFolder` triggered automatic detection, upload to the S3 bucket, a confirmation email through SNS, and log entries that appeared in the CloudWatch log group. The Admin user could manage bucket objects, while the Viewer user received Access Denied on upload and delete attempts.
 
-## Notes
-
-- Boto3 has dropped support for Python 3.9. Use Python 3.10 or later on the instance to avoid deprecation warnings and future breakage.
-- The code waits 2 seconds after a file is created before uploading. Very large files may need a longer wait or a check that the file has finished writing.
-- Never commit `.pem` key files, credentials or log files. The included `.gitignore` excludes them.
-- Replace `<ACCOUNT_ID>` in `SNS_TOPIC_ARN` with your own AWS account ID.
-
-## Repository Structure
-
-```
-AWS-Cloud-Backup/
-|-- README.md
-|-- requirements.txt
-|-- .gitignore
-|-- src/
-|   `-- Project.py
-`-- config/
-    `-- cloudwatch-agent-config.json
-```
-
 ## Future Scope
 
 - Least-privilege IAM policies scoped to the specific bucket, topic and log group
